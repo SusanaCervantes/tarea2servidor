@@ -14,6 +14,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.QueryHint;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -35,6 +36,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Administrador.findByAdmCedula", query = "SELECT a FROM Administrador a WHERE a.admCedula = :admCedula")
     , @NamedQuery(name = "Administrador.findByAdmCorreo", query = "SELECT a FROM Administrador a WHERE a.admCorreo = :admCorreo")
     , @NamedQuery(name = "Administrador.findByAdmEstado", query = "SELECT a FROM Administrador a WHERE a.admEstado = :admEstado")
+    , @NamedQuery(name = "Administrador.findByNombreApellidos", query = "SELECT a FROM Administrador a WHERE (a.admNombre) like :nombre and (a.admApellidos) like :apellidos", hints = @QueryHint(name = "eclipselink.refresh", value = "true"))
     , @NamedQuery(name = "Administrador.findByAdmVersion", query = "SELECT a FROM Administrador a WHERE a.admVersion = :admVersion")})
 public class Administrador implements Serializable {
 
@@ -85,6 +87,7 @@ public class Administrador implements Serializable {
     public Administrador(AdministradorDto adm){
         if(adm.getId() != null)
             this.admId = adm.getId();
+        
         actualizar(adm);
     }
     

@@ -11,15 +11,15 @@ package Model;
  */
 
 public class AdministradorDto {
-    private Long id;
-    private String nombre;
-    private String apellidos; 
-    private String usuario; 
-    private String contrasena;
-    private String cedula; 
-    private String correo; 
-    private String estado;
-    private Long version;
+    public Long id;
+    public String nombre;
+    public String apellidos; 
+    public String usuario; 
+    public String contrasena;
+    public String cedula; 
+    public String correo; 
+    public String estado;
+    public Long version;
 
     public AdministradorDto(Long id, String nombre, String apellidos, String usuario, String contrasena, String cedula, String correo, String estado, Long version) {
         this.id = id;

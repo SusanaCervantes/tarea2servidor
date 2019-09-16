@@ -7,6 +7,7 @@ package Controller;
 
 import Model.AdministradorDto;
 import Service.AdministradorService;
+import java.util.List;
 import javax.ejb.EJB;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
@@ -29,7 +30,11 @@ public class AdministradorController {
     
     @WebMethod(operationName = "guardarAdministrador")
     public String guardarAdministrador(@WebParam(name = "administrador") AdministradorDto admnistrador) {
-        //administradorService.guardarAdministrador(admnistrador);
         return administradorService.guardarAdministrador(admnistrador);
+    }
+    
+    @WebMethod(operationName = "getAdministradores")
+    public List<AdministradorDto> getAdministradores(@WebParam(name = "nombre") String nombre, @WebParam(name = "apellidos") String apellidos) {
+        return administradorService.getAdministradores(nombre, apellidos);
     }
 }
