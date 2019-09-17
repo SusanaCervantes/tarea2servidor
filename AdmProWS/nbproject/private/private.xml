@@ -3,7 +3,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Susana/Documents/2019/Programación%20III/tare2servidor/AdmProWS/src/java/Controller/Proyectos.java</file>
+            <file>file:/C:/Users/Susana/Documents/2019/AdmProWs/src/java/model/Administrador.java</file>
+            <file>file:/C:/Users/Susana/Documents/2019/AdmProWs/src/java/model/AdministradorDto.java</file>
+            <file>file:/C:/Users/Susana/Documents/2019/AdmProWs/src/java/controller/AdministradorController.java</file>
+            <file>file:/C:/Users/Susana/Documents/2019/AdmProWs/src/java/service/AdministradorService.java</file>
         </group>
     </open-files>
 </project-private>

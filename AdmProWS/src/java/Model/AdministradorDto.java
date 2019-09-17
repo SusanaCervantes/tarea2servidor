@@ -3,33 +3,40 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package model;
+
+import javafx.beans.property.SimpleStringProperty;
+import javax.xml.bind.annotation.XmlAccessType;
+import javax.xml.bind.annotation.XmlAccessorType;
+import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.XmlTransient;
 
 /**
  *
  * @author Susana
  */
-
+@XmlRootElement (name = "AdministradorDto")
+@XmlAccessorType (XmlAccessType.FIELD)
 public class AdministradorDto {
-    public Long id;
-    public String nombre;
-    public String apellidos; 
-    public String usuario; 
-    public String contrasena;
-    public String cedula; 
-    public String correo; 
-    public String estado;
-    public Long version;
+    private Long id;
+    private SimpleStringProperty nombre;
+    private SimpleStringProperty apellidos; 
+    private SimpleStringProperty usuario; 
+    private SimpleStringProperty contrasena;
+    private SimpleStringProperty cedula; 
+    private SimpleStringProperty correo; 
+    private SimpleStringProperty estado;
+    private Long version;
 
     public AdministradorDto(Long id, String nombre, String apellidos, String usuario, String contrasena, String cedula, String correo, String estado, Long version) {
         this.id = id;
-        this.nombre = nombre;
-        this.apellidos = apellidos;
-        this.usuario = usuario;
-        this.contrasena = contrasena;
-        this.cedula = cedula;
-        this.correo = correo;
-        this.estado = estado;
+        this.nombre.set(nombre);
+        this.apellidos.set(apellidos);
+        this.usuario.set(usuario);
+        this.contrasena.set(usuario);
+        this.cedula.set(cedula);
+        this.correo.set(correo);
+        this.estado.set(estado);
         this.version = version;
     }
     
@@ -39,13 +46,13 @@ public class AdministradorDto {
     
     public AdministradorDto(Administrador adm){
         this.id = adm.getAdmId();
-        this.nombre = adm.getAdmNombre();
-        this.apellidos = adm.getAdmApellidos();
-        this.usuario = adm.getAdmUsuario();
-        this.contrasena = adm.getAdmContrasena();
-        this.cedula = adm.getAdmCedula();
-        this.correo = adm.getAdmCorreo();
-        this.estado = adm.getAdmEstado();
+        this.nombre.set(adm.getAdmNombre());
+        this.apellidos.set(adm.getAdmApellidos());
+        this.usuario.set(adm.getAdmUsuario());
+        this.contrasena.set(adm.getAdmContrasena());
+        this.cedula.set(adm.getAdmCedula());
+        this.correo.set(adm.getAdmCorreo());
+        this.estado.set(adm.getAdmEstado());
         this.version = adm.getAdmVersion();
     }
 
@@ -57,59 +64,59 @@ public class AdministradorDto {
         this.id = id;
     }
 
-    public String getNombre() {
+    public SimpleStringProperty getNombre() {
         return nombre;
     }
 
-    public void setNombre(String nombre) {
+    public void setNombre(SimpleStringProperty nombre) {
         this.nombre = nombre;
     }
 
-    public String getApellidos() {
+    public SimpleStringProperty getApellidos() {
         return apellidos;
     }
 
-    public void setApellidos(String apellidos) {
+    public void setApellidos(SimpleStringProperty apellidos) {
         this.apellidos = apellidos;
     }
 
-    public String getUsuario() {
+    public SimpleStringProperty getUsuario() {
         return usuario;
     }
 
-    public void setUsuario(String usuario) {
+    public void setUsuario(SimpleStringProperty usuario) {
         this.usuario = usuario;
     }
 
-    public String getContrasena() {
+    public SimpleStringProperty getContrasena() {
         return contrasena;
     }
 
-    public void setContrasena(String contrasena) {
+    public void setContrasena(SimpleStringProperty contrasena) {
         this.contrasena = contrasena;
     }
 
-    public String getCedula() {
+    public SimpleStringProperty getCedula() {
         return cedula;
     }
 
-    public void setCedula(String cedula) {
+    public void setCedula(SimpleStringProperty cedula) {
         this.cedula = cedula;
     }
 
-    public String getCorreo() {
+    public SimpleStringProperty getCorreo() {
         return correo;
     }
 
-    public void setCorreo(String correo) {
+    public void setCorreo(SimpleStringProperty correo) {
         this.correo = correo;
     }
 
-    public String getEstado() {
+    public SimpleStringProperty getEstado() {
         return estado;
     }
 
-    public void setEstado(String estado) {
+    public void setEstado(SimpleStringProperty estado) {
         this.estado = estado;
     }
 

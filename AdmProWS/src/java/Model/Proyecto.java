@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
@@ -220,7 +220,7 @@ public class Proyecto implements Serializable {
 
     @Override
     public String toString() {
-        return "Model.Proyecto[ proId=" + proId + " ]";
+        return "model.Proyecto[ proId=" + proId + " ]";
     }
     
 }

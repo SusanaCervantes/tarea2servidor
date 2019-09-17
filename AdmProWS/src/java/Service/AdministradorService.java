@@ -3,20 +3,20 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Service;
+package service;
 
-import Model.Administrador;
-import Model.AdministradorDto;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.logging.Level;
+import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.logging.Logger;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
-import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
+import model.Administrador;
+import model.AdministradorDto;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import javax.persistence.NoResultException;
 import javax.persistence.Query;
-import static org.jboss.weld.logging.BeanLogger.LOG;
 
 /**
  *
@@ -27,7 +27,7 @@ public class AdministradorService {
     
     private static final Logger LOG = Logger.getLogger(AdministradorService.class.getName());
     
-    @PersistenceContext(unitName = "AdmProWSPU")
+    @PersistenceContext(unitName = "AdmProWsPU")
     private EntityManager em; 
     
     public String guardarAdministrador(AdministradorDto admDto) {
@@ -72,4 +72,28 @@ public class AdministradorService {
             return null;
         }
     }
+    
+    public String eliminarAdministrador(Long id) {
+        try {
+            Administrador administrador;
+            if (id != null && id > 0) {
+                administrador = em.find(Administrador.class, id);
+                if (administrador == null) {
+                    return "No se encrontró el administrador a eliminar.";
+                }
+                em.remove(administrador);
+            } else {
+                return "Debe cargar el administrador a eliminar.";
+            }
+            em.flush();
+            return "Administrador eliminado con exito";
+        } catch (Exception ex) {
+            if (ex.getCause() != null && ex.getCause().getCause().getClass() == SQLIntegrityConstraintViolationException.class) {
+                return "No se puede eliminar el administrador porque tiene relaciones con otros registros.";
+            }
+            LOG.log(Level.SEVERE, "Ocurrio un error al guardar el administrador.", ex);
+            return "Ocurrio un error al eliminar el administrador." + ex.getMessage();
+        }
+    }
+    
 }

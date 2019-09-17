@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package model;
 
 import java.io.Serializable;
 import javax.persistence.Basic;
@@ -92,13 +92,13 @@ public class Administrador implements Serializable {
     }
     
     public void actualizar(AdministradorDto adm){
-        this.admNombre = adm.getNombre();
-        this.admApellidos = adm.getApellidos();
-        this.admUsuario = adm.getUsuario();
-        this.admContrasena = adm.getContrasena();
-        this.admCedula= adm.getCedula();
-        this.admCorreo = adm.getCorreo();
-        this.admEstado = adm.getEstado();
+        this.admNombre = adm.getNombre().get();
+        this.admApellidos = adm.getApellidos().get();
+        this.admUsuario = adm.getUsuario().get();
+        this.admContrasena = adm.getContrasena().get();
+        this.admCedula= adm.getCedula().get();
+        this.admCorreo = adm.getCorreo().get();
+        this.admEstado = adm.getEstado().get();
         this.admVersion = adm.getVersion();
     }
 
@@ -196,7 +196,7 @@ public class Administrador implements Serializable {
 
     @Override
     public String toString() {
-        return "Model.Administrador[ admId=" + admId + " ]";
+        return "model.Administrador[ admId=" + admId + " ]";
     }
     
 }
