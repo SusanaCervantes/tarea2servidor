@@ -92,13 +92,13 @@ public class Administrador implements Serializable {
     }
     
     public void actualizar(AdministradorDto adm){
-        this.admNombre = adm.getNombre().get();
-        this.admApellidos = adm.getApellidos().get();
-        this.admUsuario = adm.getUsuario().get();
-        this.admContrasena = adm.getContrasena().get();
-        this.admCedula= adm.getCedula().get();
-        this.admCorreo = adm.getCorreo().get();
-        this.admEstado = adm.getEstado().get();
+        this.admNombre = adm.getNombre();
+        this.admApellidos = adm.getApellidos();
+        this.admUsuario = adm.getUsuario();
+        this.admContrasena = adm.getContrasena();
+        this.admCedula= adm.getCedula();
+        this.admCorreo = adm.getCorreo();
+        this.admEstado = adm.getEstado();
         this.admVersion = adm.getVersion();
     }
 

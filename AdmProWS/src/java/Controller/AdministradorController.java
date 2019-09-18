@@ -12,6 +12,8 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import model.AdministradorDto;
 import service.AdministradorService;
+import util.Respuesta;
+
 
 /**
  *
@@ -24,8 +26,9 @@ public class AdministradorController {
     AdministradorService administradorService;
     
     @WebMethod(operationName = "guardarAdministrador")
-    public String guardarAdministrador(@WebParam(name = "administrador") AdministradorDto admnistrador) {
-        return administradorService.guardarAdministrador(admnistrador);
+    public AdministradorDto guardarAdministrador(@WebParam(name = "administrador") AdministradorDto administrador) {
+        return administradorService.guardarAdministrador(administrador);
+        //respuesta.getResultado()
     }
     
     @WebMethod(operationName = "getAdministradores")

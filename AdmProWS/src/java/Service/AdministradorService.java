@@ -17,6 +17,8 @@ import java.util.List;
 import java.util.logging.Level;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
+import util.CodigoRespuesta;
+import util.Respuesta;
 
 /**
  *
@@ -30,13 +32,13 @@ public class AdministradorService {
     @PersistenceContext(unitName = "AdmProWsPU")
     private EntityManager em; 
     
-    public String guardarAdministrador(AdministradorDto admDto) {
+    public AdministradorDto guardarAdministrador(AdministradorDto admDto) {
         try {
             Administrador adm;
             if (admDto.getId()!= null && admDto.getId()> 0) {
                 adm = em.find(Administrador.class, admDto.getId());
-                if (adm == null) {
-                    return "No se encrontró el administrador a modificar.";
+                if (adm == null) { //Boolean estado, String mensaje, String mensajeInterno
+                    return null;//new Respuesta(Boolean.FALSE, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encontro ningun administrador con esos datos", "No encontrado");
                 }
                 adm.actualizar(admDto);
                 adm = em.merge(adm);
@@ -45,10 +47,12 @@ public class AdministradorService {
                 em.persist(adm);
             }
             em.flush();
-            return "Administrador guardado con exito";
+            
+            admDto = new AdministradorDto(adm);
+            return admDto;//new Respuesta(true, CodigoRespuesta.CORRECTO, "", "Administrador", new AdministradorDto(adm));
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, "Ocurrio un error al guardar el administrador.", ex);
-            return "Ocurrio un error al guardar el administrador." + ex.getMessage();
+            return null;//new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al guardar el administrador.", "guardarAdministrador " + ex.getMessage());
         }
     }
     
@@ -63,13 +67,12 @@ public class AdministradorService {
             for (Administrador administrador : administradores) {
                 administradoresDto.add(new AdministradorDto(administrador));
             }
-
             return administradoresDto;
         } catch (NoResultException ex) {
-            return null;
+            return null;//new Respuesta(Boolean.FALSE, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encontro ningun administrador con esos datos", "No encontrado");
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, "Ocurrio un error al consultar el administrador.", ex);
-            return null;
+            return null;//new Respuesta(Boolean.FALSE, CodigoRespuesta.ERROR_NOENCONTRADO, "Ocurrio un error al buscar el admnistrador", ex.toString());
         }
     }
     
@@ -79,20 +82,20 @@ public class AdministradorService {
             if (id != null && id > 0) {
                 administrador = em.find(Administrador.class, id);
                 if (administrador == null) {
-                    return "No se encrontró el administrador a eliminar.";
-                }
+                    return "No se encontro ningun administrador con esos datos";//new Respuesta(Boolean.FALSE, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encontro ningun administrador con esos datos", "No encontrado");
+                }else
                 em.remove(administrador);
             } else {
-                return "Debe cargar el administrador a eliminar.";
+                return "No se encontro ningun administrador con esos datos";//new Respuesta(Boolean.FALSE, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encontro ningun administrador con esos datos", "No encontrado");
             }
             em.flush();
-            return "Administrador eliminado con exito";
+            return "Administrador elimnado con exito";//new Respuesta(true, CodigoRespuesta.CORRECTO, "", "");
         } catch (Exception ex) {
             if (ex.getCause() != null && ex.getCause().getCause().getClass() == SQLIntegrityConstraintViolationException.class) {
-                return "No se puede eliminar el administrador porque tiene relaciones con otros registros.";
+                return "No se puede eliminar el administrador porque tiene relaciones con otros registros.";//new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "No se puede eliminar el administrador porque tiene relaciones con otros registros.", "eliminarAdministrador " + ex.getMessage());
             }
             LOG.log(Level.SEVERE, "Ocurrio un error al guardar el administrador.", ex);
-            return "Ocurrio un error al eliminar el administrador." + ex.getMessage();
+            return "Ocurrio un error al eliminar el administrador.";//new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "Ocurrio un error al eliminar el administrador.", "eliminarAdministrador " + ex.getMessage());
         }
     }
     
