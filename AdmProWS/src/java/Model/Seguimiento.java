@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -50,6 +51,7 @@ public class Seguimiento implements Serializable {
     @Basic(optional = false)
     @Column(name = "SEG_PORCENTAJE")
     private BigInteger segPorcentaje;
+    @Version
     @Column(name = "SEG_VERSION")
     private BigInteger segVersion;
     @JoinColumn(name = "PRO_ID", referencedColumnName = "PRO_ID")

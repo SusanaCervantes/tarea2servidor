@@ -17,6 +17,7 @@ import javax.persistence.NamedQuery;
 import javax.persistence.QueryHint;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -66,6 +67,7 @@ public class Administrador implements Serializable {
     @Basic(optional = false)
     @Column(name = "ADM_ESTADO")
     private String admEstado;
+    @Version
     @Column(name = "ADM_VERSION")
     private Long admVersion;
 
