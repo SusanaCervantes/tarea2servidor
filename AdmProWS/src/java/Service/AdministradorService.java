@@ -18,7 +18,6 @@ import java.util.logging.Level;
 import javax.persistence.NoResultException;
 import javax.persistence.Query;
 import util.CodigoRespuesta;
-import util.Respuesta;
 
 /**
  *
@@ -75,6 +74,31 @@ public class AdministradorService {
             return null;//new Respuesta(Boolean.FALSE, CodigoRespuesta.ERROR_NOENCONTRADO, "Ocurrio un error al buscar el admnistrador", ex.toString());
         }
     }
+    
+     public  List<AdministradorDto> getAdmiLogging(String usuario, String contrasena) {
+        try {
+            Query qryAdministrador = em.createNamedQuery("Administrador.findByUsuarioContrasena", Administrador.class);
+            qryAdministrador.setParameter("usuario", usuario );
+            qryAdministrador.setParameter("contrasena", contrasena );
+            List<Administrador> administradores = qryAdministrador.getResultList();
+            List<AdministradorDto> administradoresDto = new ArrayList<>();
+            
+            for (Administrador administrador : administradores) {
+                administradoresDto.add(new AdministradorDto(administrador));
+            }
+            return administradoresDto;
+            
+           
+        } catch (NoResultException ex) {
+            return null;//new Respuesta(Boolean.FALSE, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encontro ningun administrador con esos datos", "No encontrado");
+        } catch (Exception ex) {
+            LOG.log(Level.SEVERE, "Ocurrio un error al consultar el usuario y la contrasena", ex);
+            return null;//new Respuesta(Boolean.FALSE, CodigoRespuesta.ERROR_NOENCONTRADO, "Ocurrio un error al buscar el admnistrador", ex.toString());
+        }
+    }
+    
+    
+    
     
     public String eliminarAdministrador(Long id) {
         try {

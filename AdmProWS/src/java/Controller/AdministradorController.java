@@ -12,7 +12,6 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import model.AdministradorDto;
 import service.AdministradorService;
-import util.Respuesta;
 
 
 /**
@@ -34,6 +33,11 @@ public class AdministradorController {
     @WebMethod(operationName = "getAdministradores")
     public List<AdministradorDto> getAdministradores(@WebParam(name = "nombre") String nombre, @WebParam(name = "apellidos") String apellidos) {
         return administradorService.getAdministradores(nombre, apellidos);
+    }
+    
+    @WebMethod(operationName = "getAdmiLogging")
+    public List<AdministradorDto> getAdmiLogging(@WebParam(name = "usuario") String usuario, @WebParam(name = "contrasena") String contrasena) {
+        return administradorService.getAdmiLogging(usuario, contrasena);
     }
     
     @WebMethod(operationName = "eliminarAdministrador")
