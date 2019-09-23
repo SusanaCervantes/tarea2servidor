@@ -41,7 +41,7 @@ public class Seguimiento implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "SEG_ID")
-    private BigDecimal segId;
+    private Long segId;
     @Basic(optional = false)
     @Column(name = "SEG_DETALLE")
     private String segDetalle;
@@ -50,10 +50,10 @@ public class Seguimiento implements Serializable {
     private String segFecha;
     @Basic(optional = false)
     @Column(name = "SEG_PORCENTAJE")
-    private BigInteger segPorcentaje;
+    private Long segPorcentaje;
     @Version
     @Column(name = "SEG_VERSION")
-    private BigInteger segVersion;
+    private Long segVersion;
     @JoinColumn(name = "PRO_ID", referencedColumnName = "PRO_ID")
     @ManyToOne
     private Proyecto proId;
@@ -61,22 +61,22 @@ public class Seguimiento implements Serializable {
     public Seguimiento() {
     }
 
-    public Seguimiento(BigDecimal segId) {
+    public Seguimiento(Long segId) {
         this.segId = segId;
     }
 
-    public Seguimiento(BigDecimal segId, String segDetalle, String segFecha, BigInteger segPorcentaje) {
+    public Seguimiento(Long segId, String segDetalle, String segFecha, Long segPorcentaje) {
         this.segId = segId;
         this.segDetalle = segDetalle;
         this.segFecha = segFecha;
         this.segPorcentaje = segPorcentaje;
     }
 
-    public BigDecimal getSegId() {
+    public Long getSegId() {
         return segId;
     }
 
-    public void setSegId(BigDecimal segId) {
+    public void setSegId(Long segId) {
         this.segId = segId;
     }
 
@@ -96,19 +96,19 @@ public class Seguimiento implements Serializable {
         this.segFecha = segFecha;
     }
 
-    public BigInteger getSegPorcentaje() {
+    public Long getSegPorcentaje() {
         return segPorcentaje;
     }
 
-    public void setSegPorcentaje(BigInteger segPorcentaje) {
+    public void setSegPorcentaje(Long segPorcentaje) {
         this.segPorcentaje = segPorcentaje;
     }
 
-    public BigInteger getSegVersion() {
+    public Long getSegVersion() {
         return segVersion;
     }
 
-    public void setSegVersion(BigInteger segVersion) {
+    public void setSegVersion(Long segVersion) {
         this.segVersion = segVersion;
     }
 

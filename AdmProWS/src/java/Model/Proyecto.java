@@ -12,10 +12,15 @@ import java.util.List;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -31,7 +36,6 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Proyecto.findAll", query = "SELECT p FROM Proyecto p")
     , @NamedQuery(name = "Proyecto.findByProId", query = "SELECT p FROM Proyecto p WHERE p.proId = :proId")
     , @NamedQuery(name = "Proyecto.findByProPatrocinador", query = "SELECT p FROM Proyecto p WHERE p.proPatrocinador = :proPatrocinador")
-    , @NamedQuery(name = "Proyecto.findByProLusuario", query = "SELECT p FROM Proyecto p WHERE p.proLusuario = :proLusuario")
     , @NamedQuery(name = "Proyecto.findByProLtecnico", query = "SELECT p FROM Proyecto p WHERE p.proLtecnico = :proLtecnico")
     , @NamedQuery(name = "Proyecto.findByProFpInicio", query = "SELECT p FROM Proyecto p WHERE p.proFpInicio = :proFpInicio")
     , @NamedQuery(name = "Proyecto.findByProFpFinal", query = "SELECT p FROM Proyecto p WHERE p.proFpFinal = :proFpFinal")
@@ -42,16 +46,18 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Proyecto.findByProNombre", query = "SELECT p FROM Proyecto p WHERE p.proNombre = :proNombre")})
 public class Proyecto implements Serializable {
 
+    
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @SequenceGenerator(name = "PRO_ID_GENERATOR", sequenceName = "UNA.ADM_PROYECTO_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "PRO_ID_GENERATOR")
     @Basic(optional = false)
     @Column(name = "PRO_ID")
-    private BigDecimal proId;
+    private Long proId;
     @Column(name = "PRO_PATROCINADOR")
     private String proPatrocinador;
-    @Column(name = "PRO_LUSUARIO")
-    private String proLusuario;
     @Column(name = "PRO_LTECNICO")
     private String proLtecnico;
     @Basic(optional = false)
@@ -72,6 +78,9 @@ public class Proyecto implements Serializable {
     @Basic(optional = false)
     @Column(name = "PRO_NOMBRE")
     private String proNombre;
+    @JoinColumn(name = "ADM_ID", referencedColumnName = "ADM_ID")
+    @ManyToOne(optional = false)
+    private Administrador admId;
     @OneToMany(mappedBy = "proId")
     private List<Actividad> actividadList;
     @OneToMany(mappedBy = "proId")
@@ -80,11 +89,11 @@ public class Proyecto implements Serializable {
     public Proyecto() {
     }
 
-    public Proyecto(BigDecimal proId) {
+    public Proyecto(Long proId) {
         this.proId = proId;
     }
 
-    public Proyecto(BigDecimal proId, String proFpInicio, String proFpFinal, String proEstado, String proNombre) {
+    public Proyecto(Long proId, String proFpInicio, String proFpFinal, String proEstado, String proNombre) {
         this.proId = proId;
         this.proFpInicio = proFpInicio;
         this.proFpFinal = proFpFinal;
@@ -92,11 +101,11 @@ public class Proyecto implements Serializable {
         this.proNombre = proNombre;
     }
 
-    public BigDecimal getProId() {
+    public Long getProId() {
         return proId;
     }
 
-    public void setProId(BigDecimal proId) {
+    public void setProId(Long proId) {
         this.proId = proId;
     }
 
@@ -106,14 +115,6 @@ public class Proyecto implements Serializable {
 
     public void setProPatrocinador(String proPatrocinador) {
         this.proPatrocinador = proPatrocinador;
-    }
-
-    public String getProLusuario() {
-        return proLusuario;
-    }
-
-    public void setProLusuario(String proLusuario) {
-        this.proLusuario = proLusuario;
     }
 
     public String getProLtecnico() {
@@ -221,6 +222,14 @@ public class Proyecto implements Serializable {
     @Override
     public String toString() {
         return "model.Proyecto[ proId=" + proId + " ]";
+    }
+
+    public Administrador getAdmId() {
+        return admId;
+    }
+
+    public void setAdmId(Administrador admId) {
+        this.admId = admId;
     }
     
 }

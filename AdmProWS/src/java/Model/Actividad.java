@@ -17,6 +17,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
 
 /**
@@ -46,7 +47,7 @@ public class Actividad implements Serializable {
     @Id
     @Basic(optional = false)
     @Column(name = "ACT_ID")
-    private BigDecimal actId;
+    private Long actId;
     @Basic(optional = false)
     @Column(name = "ACT_ENCARGADO")
     private String actEncargado;
@@ -62,7 +63,7 @@ public class Actividad implements Serializable {
     private String actFrFinal;
     @Basic(optional = false)
     @Column(name = "ACT_ORDEN")
-    private BigInteger actOrden;
+    private Long actOrden;
     @Column(name = "ACT_DESCRIPCION")
     private String actDescripcion;
     @Basic(optional = false)
@@ -71,8 +72,9 @@ public class Actividad implements Serializable {
     @Basic(optional = false)
     @Column(name = "ACT_NOMBRE")
     private String actNombre;
+    @Version
     @Column(name = "ACT_VERSION")
-    private BigInteger actVersion;
+    private Long actVersion;
     @JoinColumn(name = "PRO_ID", referencedColumnName = "PRO_ID")
     @ManyToOne
     private Proyecto proId;
@@ -80,11 +82,11 @@ public class Actividad implements Serializable {
     public Actividad() {
     }
 
-    public Actividad(BigDecimal actId) {
+    public Actividad(Long actId) {
         this.actId = actId;
     }
 
-    public Actividad(BigDecimal actId, String actEncargado, String actFpInicio, String actFpFinal, BigInteger actOrden, String actEstado, String actNombre) {
+    public Actividad(Long actId, String actEncargado, String actFpInicio, String actFpFinal, Long actOrden, String actEstado, String actNombre) {
         this.actId = actId;
         this.actEncargado = actEncargado;
         this.actFpInicio = actFpInicio;
@@ -94,11 +96,11 @@ public class Actividad implements Serializable {
         this.actNombre = actNombre;
     }
 
-    public BigDecimal getActId() {
+    public Long getActId() {
         return actId;
     }
 
-    public void setActId(BigDecimal actId) {
+    public void setActId(Long actId) {
         this.actId = actId;
     }
 
@@ -142,11 +144,11 @@ public class Actividad implements Serializable {
         this.actFrFinal = actFrFinal;
     }
 
-    public BigInteger getActOrden() {
+    public Long getActOrden() {
         return actOrden;
     }
 
-    public void setActOrden(BigInteger actOrden) {
+    public void setActOrden(Long actOrden) {
         this.actOrden = actOrden;
     }
 
@@ -174,11 +176,11 @@ public class Actividad implements Serializable {
         this.actNombre = actNombre;
     }
 
-    public BigInteger getActVersion() {
+    public Long getActVersion() {
         return actVersion;
     }
 
-    public void setActVersion(BigInteger actVersion) {
+    public void setActVersion(Long actVersion) {
         this.actVersion = actVersion;
     }
 
