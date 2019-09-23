@@ -16,6 +16,7 @@ import javax.persistence.PersistenceContext;
  */
 @Stateless
 public class ActividadService {
+
     private static final Logger LOG = Logger.getLogger(ActividadService.class.getName());
     
     @PersistenceContext(unitName = "AdmProWsPU")
