@@ -42,7 +42,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Administrador.findByAdmCorreo", query = "SELECT a FROM Administrador a WHERE a.admCorreo = :admCorreo")
     , @NamedQuery(name = "Administrador.findByAdmEstado", query = "SELECT a FROM Administrador a WHERE a.admEstado = :admEstado")
     , @NamedQuery(name = "Administrador.findByNombreApellidos", query = "SELECT a FROM Administrador a WHERE (a.admNombre) like :nombre and (a.admApellidos) like :apellidos", hints = @QueryHint(name = "eclipselink.refresh", value = "true"))
-    , @NamedQuery(name = "Administrador.findByAdmVersion", query = "SELECT a FROM Administrador a WHERE a.admVersion = :admVersion")})
+    , @NamedQuery(name = "Administrador.findByAdmVersion", query = "SELECT a FROM Administrador a WHERE a.admVersion = :admVersion")
+    , @NamedQuery(name = "Administrador.findByUsuarioContrasena", query = "SELECT a FROM Administrador a WHERE (a.admUsuario) = :usuario and (a.admContrasena) = :contrasena")})
+
 public class Administrador implements Serializable {
 
     

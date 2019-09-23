@@ -6,8 +6,6 @@
 package model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -70,6 +68,17 @@ public class Seguimiento implements Serializable {
         this.segDetalle = segDetalle;
         this.segFecha = segFecha;
         this.segPorcentaje = segPorcentaje;
+    }
+    
+    public Seguimiento(SeguimientoDto seg){
+        this.segId = seg.getId();
+        actualizar(seg);
+    }
+    
+    public void actualizar(SeguimientoDto seg){
+        this.segDetalle = seg.getDetalle();
+        this.segFecha = seg.getFecha();
+        this.segPorcentaje = new Long(seg.getPorcentaje());
     }
 
     public Long getSegId() {
