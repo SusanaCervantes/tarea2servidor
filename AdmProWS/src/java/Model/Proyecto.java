@@ -46,6 +46,11 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Proyecto.findByProNombre", query = "SELECT p FROM Proyecto p WHERE p.proNombre = :proNombre")})
 public class Proyecto implements Serializable {
 
+    @Column(name = "PRO_CORREO_LTECNICO")
+    private String proCorreoLtecnico;
+    @Column(name = "PRO_CORREO_PATROCINADOR")
+    private String proCorreoPatrocinador;
+
     
 
     private static final long serialVersionUID = 1L;
@@ -230,6 +235,22 @@ public class Proyecto implements Serializable {
 
     public void setAdmId(Administrador admId) {
         this.admId = admId;
+    }
+
+    public String getProCorreoLtecnico() {
+        return proCorreoLtecnico;
+    }
+
+    public void setProCorreoLtecnico(String proCorreoLtecnico) {
+        this.proCorreoLtecnico = proCorreoLtecnico;
+    }
+
+    public String getProCorreoPatrocinador() {
+        return proCorreoPatrocinador;
+    }
+
+    public void setProCorreoPatrocinador(String proCorreoPatrocinador) {
+        this.proCorreoPatrocinador = proCorreoPatrocinador;
     }
     
 }

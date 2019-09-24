@@ -21,6 +21,7 @@ public class SeguimientoDto {
     private String fecha;
     private String porcentaje;
     private Long version;
+    private ProyectosDto proyecto;
            
     public SeguimientoDto()
     {
@@ -34,6 +35,8 @@ public class SeguimientoDto {
         this.fecha = seg.getSegFecha();
         this.porcentaje = seg.getSegPorcentaje().toString();
         this.version = seg.getSegVersion();
+        if(seg.getProId() != null)
+            proyecto = new ProyectosDto(seg.getProId());
     }
 
     public Long getId() {

@@ -6,8 +6,6 @@
 package model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
-import java.math.BigInteger;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -44,6 +42,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Actividad.findByActVersion", query = "SELECT a FROM Actividad a WHERE a.actVersion = :actVersion")})
 public class Actividad implements Serializable {
 
+    @Basic(optional = false)
+    @Column(name = "ACT_ORDEN")
+    private Long actOrden;
+    @Version
+    @Column(name = "ACT_VERSION")
+    private Long actVersion;
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -63,9 +68,6 @@ public class Actividad implements Serializable {
     private String actFrInicio;
     @Column(name = "ACT_FR_FINAL")
     private String actFrFinal;
-    @Basic(optional = false)
-    @Column(name = "ACT_ORDEN")
-    private Long actOrden;
     @Column(name = "ACT_DESCRIPCION")
     private String actDescripcion;
     @Basic(optional = false)
@@ -74,9 +76,6 @@ public class Actividad implements Serializable {
     @Basic(optional = false)
     @Column(name = "ACT_NOMBRE")
     private String actNombre;
-    @Version
-    @Column(name = "ACT_VERSION")
-    private Long actVersion;
     @JoinColumn(name = "PRO_ID", referencedColumnName = "PRO_ID")
     @ManyToOne
     private Proyecto proId;
@@ -218,5 +217,6 @@ public class Actividad implements Serializable {
     public String toString() {
         return "model.Actividad[ actId=" + actId + " ]";
     }
+
     
 }

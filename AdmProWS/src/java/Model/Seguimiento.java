@@ -34,6 +34,13 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Seguimiento.findBySegVersion", query = "SELECT s FROM Seguimiento s WHERE s.segVersion = :segVersion")})
 public class Seguimiento implements Serializable {
 
+    @Basic(optional = false)
+    @Column(name = "SEG_PORCENTAJE")
+    private Long segPorcentaje;
+    @Version
+    @Column(name = "SEG_VERSION")
+    private Long segVersion;
+
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
@@ -46,12 +53,6 @@ public class Seguimiento implements Serializable {
     @Basic(optional = false)
     @Column(name = "SEG_FECHA")
     private String segFecha;
-    @Basic(optional = false)
-    @Column(name = "SEG_PORCENTAJE")
-    private Long segPorcentaje;
-    @Version
-    @Column(name = "SEG_VERSION")
-    private Long segVersion;
     @JoinColumn(name = "PRO_ID", referencedColumnName = "PRO_ID")
     @ManyToOne
     private Proyecto proId;
@@ -153,5 +154,6 @@ public class Seguimiento implements Serializable {
     public String toString() {
         return "model.Seguimiento[ segId=" + segId + " ]";
     }
+
     
 }

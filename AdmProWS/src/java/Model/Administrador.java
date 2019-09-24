@@ -47,6 +47,9 @@ import javax.xml.bind.annotation.XmlTransient;
 
 public class Administrador implements Serializable {
 
+    @Column(name = "ADM_VERSION")
+    private Long admVersion;
+
     
 
     private static final long serialVersionUID = 1L;
@@ -75,9 +78,6 @@ public class Administrador implements Serializable {
     @Basic(optional = false)
     @Column(name = "ADM_ESTADO")
     private String admEstado;
-    @Version
-    @Column(name = "ADM_VERSION")
-    private Long admVersion;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "admId")
     private List<Proyecto> proyectoList;
     

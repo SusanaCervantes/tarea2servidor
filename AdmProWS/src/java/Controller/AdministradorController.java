@@ -5,6 +5,7 @@
  */
 package controller;
 
+import service.ActividadService;
 import java.util.List;
 import javax.ejb.EJB;
 import javax.jws.WebService;
@@ -23,6 +24,9 @@ public class AdministradorController {
 
     @EJB 
     AdministradorService administradorService;
+    
+//    @EJB 
+//    ActividadService as;
     
     @WebMethod(operationName = "guardarAdministrador")
     public AdministradorDto guardarAdministrador(@WebParam(name = "administrador") AdministradorDto administrador) {

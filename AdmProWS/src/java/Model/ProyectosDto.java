@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package model;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +27,10 @@ public class ProyectosDto {
     private String proFrInicio;
     private String proFrFinal;
     private String proEstado;
-    private model.Administrador admId;
+    private Administrador admId;
     
     private String proNombre;
-    private List<model.Seguimiento> seguimientosList;
+    private List<Seguimiento> seguimientosList;
 
     public ProyectosDto(){
         this.seguimientosList = new ArrayList();
@@ -54,7 +54,7 @@ public class ProyectosDto {
      *
      * @param proyecto
      */
-    public ProyectosDto(model.Proyecto proyecto){
+    public ProyectosDto(Proyecto proyecto){
         //this();
         this.proId = proyecto.getProId();
         this.proPatrocinador = proyecto.getProPatrocinador();
@@ -149,16 +149,11 @@ public class ProyectosDto {
         this.proNombre = proNombre;
     }
 
-    public List<model.Seguimiento> getSeguimientosList() {
+    public List<Seguimiento> getSeguimientosList() {
         return seguimientosList;
     }
 
     public void setSeguimientosList(List<model.Seguimiento> seguimientosList) {
         this.seguimientosList = seguimientosList;
-    }
-    
-    
-    
-    
-    
+    } 
 }
