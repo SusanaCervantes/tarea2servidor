@@ -9,11 +9,14 @@ import java.io.Serializable;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -25,13 +28,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name = "ADM_SEGUIMIENTO")
 @XmlRootElement
-@NamedQueries({
+@NamedQueries({ 
     @NamedQuery(name = "Seguimiento.findAll", query = "SELECT s FROM Seguimiento s")
     , @NamedQuery(name = "Seguimiento.findBySegId", query = "SELECT s FROM Seguimiento s WHERE s.segId = :segId")
     , @NamedQuery(name = "Seguimiento.findBySegDetalle", query = "SELECT s FROM Seguimiento s WHERE s.segDetalle = :segDetalle")
     , @NamedQuery(name = "Seguimiento.findBySegFecha", query = "SELECT s FROM Seguimiento s WHERE s.segFecha = :segFecha")
     , @NamedQuery(name = "Seguimiento.findBySegPorcentaje", query = "SELECT s FROM Seguimiento s WHERE s.segPorcentaje = :segPorcentaje")
-    , @NamedQuery(name = "Seguimiento.findBySegVersion", query = "SELECT s FROM Seguimiento s WHERE s.segVersion = :segVersion")})
+    , @NamedQuery(name = "Seguimiento.findBySegVersion", query = "SELECT s FROM Seguimiento s WHERE s.segVersion = :segVersion")
+    , @NamedQuery(name = "Seguimiento.findByProid", query = "SELECT s FROM Seguimiento s WHERE s.proId = :proId")
+})
 public class Seguimiento implements Serializable {
 
     @Basic(optional = false)
@@ -44,6 +49,8 @@ public class Seguimiento implements Serializable {
     private static final long serialVersionUID = 1L;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Id
+    @SequenceGenerator(name = "ADM_SEGUIMIENTO_ADM_ID_GENERATOR", sequenceName = "UNA.ADM_SEGUIMIENTO_SEQ01", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "ADM_SEGUIMIENTO_ADM_ID_GENERATOR")
     @Basic(optional = false)
     @Column(name = "SEG_ID")
     private Long segId;
@@ -71,12 +78,12 @@ public class Seguimiento implements Serializable {
         this.segPorcentaje = segPorcentaje;
     }
     
-    public Seguimiento(SeguimientoDto seg){
+    public Seguimiento(SeguimientoDto seg) {
         this.segId = seg.getId();
         actualizar(seg);
     }
     
-    public void actualizar(SeguimientoDto seg){
+    public void actualizar(SeguimientoDto seg) {
         this.segDetalle = seg.getDetalle();
         this.segFecha = seg.getFecha();
         this.segPorcentaje = new Long(seg.getPorcentaje());

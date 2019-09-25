@@ -113,7 +113,7 @@ public class AdministradorService {
                 return "No se encontro ningun administrador con esos datos";//new Respuesta(Boolean.FALSE, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encontro ningun administrador con esos datos", "No encontrado");
             }
             em.flush();
-            return "Administrador elimnado con exito";//new Respuesta(true, CodigoRespuesta.CORRECTO, "", "");
+            return "Administrador eliminado con exito";//new Respuesta(true, CodigoRespuesta.CORRECTO, "", "");
         } catch (Exception ex) {
             if (ex.getCause() != null && ex.getCause().getCause().getClass() == SQLIntegrityConstraintViolationException.class) {
                 return "No se puede eliminar el administrador porque tiene relaciones con otros registros.";//new Respuesta(false, CodigoRespuesta.ERROR_INTERNO, "No se puede eliminar el administrador porque tiene relaciones con otros registros.", "eliminarAdministrador " + ex.getMessage());

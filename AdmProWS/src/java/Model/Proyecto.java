@@ -253,4 +253,5 @@ public class Proyecto implements Serializable {
         this.proCorreoPatrocinador = proCorreoPatrocinador;
     }
     
+    
 }

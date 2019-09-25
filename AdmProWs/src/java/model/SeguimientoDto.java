@@ -78,5 +78,13 @@ public class SeguimientoDto {
     public void setVersion(Long version) {
         this.version = version;
     }
+
+    public ProyectosDto getProyecto() {
+        return proyecto;
+    }
+
+    public void setProyecto(ProyectosDto proyecto) {
+        this.proyecto = proyecto;
+    }
     
 }
