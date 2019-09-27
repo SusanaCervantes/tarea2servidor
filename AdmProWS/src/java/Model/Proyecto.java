@@ -43,13 +43,11 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Proyecto.findByProFrFinal", query = "SELECT p FROM Proyecto p WHERE p.proFrFinal = :proFrFinal")
     , @NamedQuery(name = "Proyecto.findByProEstado", query = "SELECT p FROM Proyecto p WHERE p.proEstado = :proEstado")
     , @NamedQuery(name = "Proyecto.findByProVersion", query = "SELECT p FROM Proyecto p WHERE p.proVersion = :proVersion")
-    , @NamedQuery(name = "Proyecto.findByProNombre", query = "SELECT p FROM Proyecto p WHERE p.proNombre = :proNombre")})
+    , @NamedQuery(name = "Proyecto.findByProNombre", query = "SELECT p FROM Proyecto p WHERE p.proNombre = :proNombre")
+    , @NamedQuery(name = "Proyecto.filtro", query = "SELECT p FROM Proyecto p WHERE p.admId = :admId and UPPER(p.proNombre) LIKE :proNombre")})
 public class Proyecto implements Serializable {
 
-    @Column(name = "PRO_CORREO_LTECNICO")
-    private String proCorreoLtecnico;
-    @Column(name = "PRO_CORREO_PATROCINADOR")
-    private String proCorreoPatrocinador;
+    
 
     
 
@@ -83,6 +81,10 @@ public class Proyecto implements Serializable {
     @Basic(optional = false)
     @Column(name = "PRO_NOMBRE")
     private String proNombre;
+    @Column(name = "PRO_CORREO_LTECNICO")
+    private String proCorreoLtecnico;
+    @Column(name = "PRO_CORREO_PATROCINADOR")
+    private String proCorreoPatrocinador;
     @JoinColumn(name = "ADM_ID", referencedColumnName = "ADM_ID")
     @ManyToOne(optional = false)
     private Administrador admId;
@@ -106,6 +108,27 @@ public class Proyecto implements Serializable {
         this.proNombre = proNombre;
     }
 
+    public Proyecto(ProyectosDto pro){
+        this.proId = pro.getProId();
+        actualizar(pro);
+    }
+
+    public void actualizar(ProyectosDto pro){
+        this.proCorreoLtecnico = pro.getProCorreoLtecnico();
+        this.proCorreoPatrocinador = pro.getProCorreoPatrocinador();
+        this.proPatrocinador = pro.getProPatrocinador();
+        this.proLtecnico = pro.getProLtecnico();
+        this.proFpInicio = pro.getProFpInicio();
+        this.proFpFinal = pro.getProFpFinal();
+        this.proFrInicio = pro.getProFrInicio();
+        this.proFrFinal = pro.getProFrFinal();
+        this.proEstado = pro.getProEstado();
+        this.proNombre = pro.getProNombre();
+        this.admId = new Administrador(pro.getAdmId());
+        this.actividadList = pro.getListAct();
+        this.seguimientoList = pro.getListSeg();
+    }
+    
     public Long getProId() {
         return proId;
     }

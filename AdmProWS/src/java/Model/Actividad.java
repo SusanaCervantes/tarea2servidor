@@ -97,6 +97,10 @@ public class Actividad implements Serializable {
         this.actNombre = actNombre;
     }
 
+    public Actividad(ActividadDto act){
+        
+    }
+    
     public Long getActId() {
         return actId;
     }

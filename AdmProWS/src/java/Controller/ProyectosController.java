@@ -1,0 +1,50 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package controller;
+
+import java.util.List;
+import javax.ejb.EJB;
+import javax.jws.WebService;
+import javax.jws.WebMethod;
+import javax.jws.WebParam;
+import model.ProyectosDto;
+import service.ProyectosService;
+
+/**
+ *
+ * @author ivana
+ */
+@WebService(serviceName = "ProyectosController")
+public class ProyectosController {
+
+    @EJB
+    ProyectosService service;
+    
+
+    /**
+     * Web service operation
+     * @return 
+     */
+    @WebMethod(operationName = "getProyectos")
+    public List<ProyectosDto> getProyectos() {
+        return service.getAll();
+    }
+    
+    
+    @WebMethod(operationName = "guardarProyectos")
+    public ProyectosDto guardarProyectos(@WebParam(name = "proyecto") ProyectosDto proyecto) {
+        return service.guardarProyecto(proyecto);
+    }
+    
+    
+    @WebMethod(operationName = "eliminarProyecto")
+    public String eliminarProyecto(@WebParam(name = "id") Long id){
+        return service.eliminarProyecto(id);
+    }
+    
+}
+
+

@@ -27,28 +27,45 @@ public class ProyectosDto {
     private String proFrInicio;
     private String proFrFinal;
     private String proEstado;
-    private Administrador admId;
-    
+    private AdministradorDto admId;
+    private String proCorreoLtecnico;
+    private String proCorreoPatrocinador;
     private String proNombre;
-    private List<Seguimiento> seguimientosList;
+    private List<SeguimientoDto> seguimientosList;
+    private List<ActividadDto> actividadList;
 
     public ProyectosDto(){
         this.seguimientosList = new ArrayList();
     }
-    
-    public ProyectosDto(Long proId, String proPatrocinador, String proLtecnico, String proFpInicio, String proFpFinal, String proFrInicio, String proFrFinal, String proEstado, model.Administrador admId, String proNombre, List<model.Seguimiento> seguimientosList) {
-        this.proId = proId;
-        this.proPatrocinador = proPatrocinador;
-        this.proLtecnico = proLtecnico;
-        this.proFpInicio = proFpInicio;
-        this.proFpFinal = proFpFinal;
-        this.proFrInicio = proFrInicio;
-        this.proFrFinal = proFrFinal;
-        this.proEstado = proEstado;
-        this.admId = admId;
-        this.proNombre = proNombre;
-        this.seguimientosList = seguimientosList;
+
+
+    public String getProCorreoLtecnico() {
+        return proCorreoLtecnico;
     }
+
+    public void setProCorreoLtecnico(String proCorreoLtecnico) {
+        this.proCorreoLtecnico = proCorreoLtecnico;
+    }
+
+    public String getProCorreoPatrocinador() {
+        return proCorreoPatrocinador;
+    }
+
+    public void setProCorreoPatrocinador(String proCorreoPatrocinador) {
+        this.proCorreoPatrocinador = proCorreoPatrocinador;
+    }
+
+    public List<ActividadDto> getActividadList() {
+        return actividadList;
+    }
+
+    public void setActividadList(List<Actividad> actividadList) {
+        for(Actividad act: actividadList){
+            this.actividadList.add(new ActividadDto(act));
+        }
+    }
+    
+    
     
     /**
      *
@@ -64,9 +81,12 @@ public class ProyectosDto {
         this.proFrInicio = proyecto.getProFrInicio();
         this.proFrFinal = proyecto.getProFrFinal();
         this.proEstado = proyecto.getProEstado();
-        this.admId = proyecto.getAdmId();
+        this.admId = new AdministradorDto(proyecto.getAdmId());
         this.proNombre = proyecto.getProNombre();
-        this.seguimientosList = proyecto.getSeguimientoList();
+        setSeguimientosList(proyecto.getSeguimientoList());
+        this.proCorreoLtecnico = proyecto.getProCorreoLtecnico();
+        this.proCorreoPatrocinador = proyecto.getProCorreoPatrocinador();
+        setActividadList(proyecto.getActividadList());
     }
 
     public Long getProId() {
@@ -133,12 +153,12 @@ public class ProyectosDto {
         this.proEstado = proEstado;
     }
 
-    public model.Administrador getAdmId() {
+    public AdministradorDto getAdmId() {
         return admId;
     }
 
-    public void setAdmId(model.Administrador admId) {
-        this.admId = admId;
+    public void setAdmId(Administrador admId) {
+        this.admId = new AdministradorDto(admId);
     }
 
     public String getProNombre() {
@@ -149,11 +169,29 @@ public class ProyectosDto {
         this.proNombre = proNombre;
     }
 
-    public List<Seguimiento> getSeguimientosList() {
+    public List<SeguimientoDto> getSeguimientosList() {
         return seguimientosList;
     }
 
-    public void setSeguimientosList(List<model.Seguimiento> seguimientosList) {
-        this.seguimientosList = seguimientosList;
+    public void setSeguimientosList(List<Seguimiento> seguimientosList) {
+        for(Seguimiento seg: seguimientosList){
+            this.seguimientosList.add(new SeguimientoDto(seg));
+        }
     } 
+    
+    public List<Seguimiento>  getListSeg(){
+        List<Seguimiento> list = new ArrayList();
+        for(SeguimientoDto seg: seguimientosList){
+            list.add(new Seguimiento(seg));
+        }
+        return list;
+    }
+    
+    public List<Actividad> getListAct(){
+        List<Actividad> list = new ArrayList();
+        for(ActividadDto act: actividadList){
+            list.add(new Actividad(act));
+        }
+        return list;
+    }
 }

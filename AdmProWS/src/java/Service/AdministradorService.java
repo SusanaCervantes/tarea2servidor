@@ -68,6 +68,7 @@ public class AdministradorService {
             }
             return administradoresDto;
         } catch (NoResultException ex) {
+            LOG.log(Level.WARNING, "No hay resultados", ex);
             return null;//new Respuesta(Boolean.FALSE, CodigoRespuesta.ERROR_NOENCONTRADO, "No se encontro ningun administrador con esos datos", "No encontrado");
         } catch (Exception ex) {
             LOG.log(Level.SEVERE, "Ocurrio un error al consultar el administrador.", ex);

@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Model;
+package model;
 
 import javax.xml.bind.annotation.XmlAccessType;
 import javax.xml.bind.annotation.XmlAccessorType;
@@ -49,7 +49,7 @@ public class ActividadDto {
     public ActividadDto() {
     }
     
-//    public ActividadDto(Actividad act) {
+   public ActividadDto(Actividad act) {
 //        this.id = act.getActId();
 //        this.nombre = act.getActNombre();
 //        this.encargado = act.getActEncargado();
@@ -62,7 +62,7 @@ public class ActividadDto {
 //        this.orden = act.getActOrden();
 //        this.version = act.getActVersion();
 //        //proyecto
-//    }
+    }
 
     public Long getId() {
         return id;
