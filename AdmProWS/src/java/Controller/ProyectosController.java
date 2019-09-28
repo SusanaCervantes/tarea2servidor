@@ -10,6 +10,7 @@ import javax.ejb.EJB;
 import javax.jws.WebService;
 import javax.jws.WebMethod;
 import javax.jws.WebParam;
+import model.AdministradorDto;
 import model.ProyectosDto;
 import service.ProyectosService;
 
@@ -41,10 +42,14 @@ public class ProyectosController {
     
     
     @WebMethod(operationName = "eliminarProyecto")
-    public String eliminarProyecto(@WebParam(name = "id") Long id){
+    public Integer eliminarProyecto(@WebParam(name = "id") Long id){
         return service.eliminarProyecto(id);
     }
     
+    @WebMethod(operationName = "filter")
+    public List<ProyectosDto> filter(@WebParam(name = "Administrador") AdministradorDto adm, @WebParam(name = "nombre") String nombre){
+        return service.filtro(adm, nombre);
+    }
 }
 
 

@@ -44,7 +44,7 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Proyecto.findByProEstado", query = "SELECT p FROM Proyecto p WHERE p.proEstado = :proEstado")
     , @NamedQuery(name = "Proyecto.findByProVersion", query = "SELECT p FROM Proyecto p WHERE p.proVersion = :proVersion")
     , @NamedQuery(name = "Proyecto.findByProNombre", query = "SELECT p FROM Proyecto p WHERE p.proNombre = :proNombre")
-    , @NamedQuery(name = "Proyecto.filtro", query = "SELECT p FROM Proyecto p WHERE p.admId = :admId and UPPER(p.proNombre) LIKE :proNombre")})
+    , @NamedQuery(name = "Proyecto.filtro", query = "SELECT p FROM Proyecto p WHERE p.admId = :admId or UPPER(p.proNombre) LIKE :proNombre")})
 public class Proyecto implements Serializable {
 
     

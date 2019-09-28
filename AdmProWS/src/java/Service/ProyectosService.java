@@ -71,26 +71,26 @@ public class ProyectosService {
         }
     }
     
-    public String eliminarProyecto(Long id) {
+    public Integer eliminarProyecto(Long id) {
         try {
             Proyecto proyecto;
             if (id != null && id > 0) {
                 proyecto = em.find(Proyecto.class, id);
                 if (proyecto == null) {
-                    return "No se encontro ningun administrador con esos datos";
+                    return 0;
                 }else
                 em.remove(proyecto);
             } else {
-                return "No se encontro ningun administrador con esos datos";
+                return 0;
             }
             em.flush();
-            return "Administrador eliminado con exito";
+            return 1;
         } catch (Exception ex) {
             if (ex.getCause() != null && ex.getCause().getCause().getClass() == SQLIntegrityConstraintViolationException.class) {
-                return "No se puede eliminar el administrador porque tiene relaciones con otros registros.";
+                return 2;
             }
             LOG.log(Level.SEVERE, "Ocurrio un error al guardar el administrador.", ex);
-            return "Ocurrio un error al eliminar el administrador.";
+            return 3;
         }
     }
     
