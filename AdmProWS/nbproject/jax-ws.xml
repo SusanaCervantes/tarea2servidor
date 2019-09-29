@@ -4,6 +4,15 @@
     <service name="AdministradorController">
       <implementation-class>controller.AdministradorController</implementation-class>
     </service>
+    <service name="ProyectosController">
+      <implementation-class>controller.ProyectosController</implementation-class>
+    </service>
+    <service name="SeguimientoController">
+      <implementation-class>controller.SeguimientoController</implementation-class>
+    </service>
+    <service name="ActividadController">
+      <implementation-class>Controller.ActividadController</implementation-class>
+    </service>
   </services>
   <clients/>
 </jax-ws>

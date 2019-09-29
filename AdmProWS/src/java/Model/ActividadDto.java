@@ -29,7 +29,7 @@ public class ActividadDto {
     private String estado;
     private Long orden;
     private Long version;
-    //proyecto
+    private ProyectosDto pro;
 
     public ActividadDto(Long id, String nombre, String encargado, String fpinicio, String fpfinal, String frinicio, String frfinal, String descripcion, String estado, Long orden, Long version) {
         this.id = id;
@@ -50,18 +50,19 @@ public class ActividadDto {
     }
     
    public ActividadDto(Actividad act) {
-//        this.id = act.getActId();
-//        this.nombre = act.getActNombre();
-//        this.encargado = act.getActEncargado();
-//        this.fpinicio = act.getActFpInicio();
-//        this.fpfinal = act.getActFpFinal();
-//        this.frinicio = act.getActFrInicio();
-//        this.frfinal = act.getActFrFinal();
-//        this.descripcion = act.getActDescripcion();
-//        this.estado = act.getActEstado();
-//        this.orden = act.getActOrden();
-//        this.version = act.getActVersion();
-//        //proyecto
+        this.id = act.getActId();
+        this.nombre = act.getActNombre();
+        this.encargado = act.getActEncargado();
+        this.fpinicio = act.getActFpInicio();
+        this.fpfinal = act.getActFpFinal();
+        this.frinicio = act.getActFrInicio();
+        this.frfinal = act.getActFrFinal();
+        this.descripcion = act.getActDescripcion();
+        this.estado = act.getActEstado();
+        this.orden = act.getActOrden();
+        this.version = act.getActVersion();
+        if(act.getProId() != null)
+            pro = new ProyectosDto(act.getProId());
     }
 
     public Long getId() {

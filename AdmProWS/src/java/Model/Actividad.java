@@ -38,7 +38,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     , @NamedQuery(name = "Actividad.findByActDescripcion", query = "SELECT a FROM Actividad a WHERE a.actDescripcion = :actDescripcion")
     , @NamedQuery(name = "Actividad.findByActEstado", query = "SELECT a FROM Actividad a WHERE a.actEstado = :actEstado")
     , @NamedQuery(name = "Actividad.findByActNombre", query = "SELECT a FROM Actividad a WHERE a.actNombre = :actNombre")
-    //, @NamedQuery(name = "Actividad.findByNombre2", query = "SELECT a FROM Actividad a WHERE a.admNombre like :nombre", hints = @QueryHint(name = "eclipselink.refresh", value = "true"))
+    , @NamedQuery(name = "Actividad.filtroN", query = "SELECT a FROM Actividad a WHERE UPPER(a.actNombre) LIKE :actNombre")
+    , @NamedQuery(name = "Actividad.findByPro", query = "SELECT a FROM Actividad a WHERE a.proId = :proId")
     , @NamedQuery(name = "Actividad.findByActVersion", query = "SELECT a FROM Actividad a WHERE a.actVersion = :actVersion")})
 public class Actividad implements Serializable {
 
@@ -98,7 +99,24 @@ public class Actividad implements Serializable {
     }
 
     public Actividad(ActividadDto act){
-        
+        this.actId = act.getId();
+        actualizarAct(act);
+    }
+    
+    public void actualizarAct(ActividadDto act){
+        this.actDescripcion = act.getDescripcion();
+        this.actEncargado = act.getEncargado();
+        this.actEstado = act.getEstado();
+        this.actFpFinal = act.getFpfinal();
+        this.actFpInicio = act.getFpinicio();
+        this.actFrFinal = act.getFpfinal();
+        this.actFrInicio = act.getFrinicio();
+        this.actNombre = act.getNombre();
+        this.actOrden = act.getOrden();
+        this.actVersion = act.getVersion();
+                                                                            
+                                                                                       
+               
     }
     
     public Long getActId() {
