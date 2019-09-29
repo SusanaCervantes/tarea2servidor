@@ -16,7 +16,7 @@ import service.ProyectosService;
 
 /**
  *
- * @author ivana
+ * @author Susana
  */
 @WebService(serviceName = "ProyectosController")
 public class ProyectosController {
@@ -51,5 +51,3 @@ public class ProyectosController {
         return service.filtro(adm, nombre);
     }
 }
-
-
