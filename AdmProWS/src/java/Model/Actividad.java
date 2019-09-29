@@ -113,10 +113,7 @@ public class Actividad implements Serializable {
         this.actFrInicio = act.getFrinicio();
         this.actNombre = act.getNombre();
         this.actOrden = act.getOrden();
-        this.actVersion = act.getVersion();
-                                                                            
-                                                                                       
-               
+        this.actVersion = act.getVersion();         
     }
     
     public Long getActId() {

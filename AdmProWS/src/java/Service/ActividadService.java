@@ -32,7 +32,7 @@ public class ActividadService {
     private EntityManager em; 
     
     
-    public ActividadDto guardarSeguimiento(ActividadDto actDto) {
+    public ActividadDto guardarActividad(ActividadDto actDto) {
         try {
             Actividad act;
             Proyecto pro = em.find(Proyecto.class, new Long(1));//segDto.getProyecto().getProId());
