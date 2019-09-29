@@ -83,7 +83,7 @@ public class ProyectosDto {
         this.proEstado = proyecto.getProEstado();
         this.admId = new AdministradorDto(proyecto.getAdmId());
         this.proNombre = proyecto.getProNombre();
-        setSeguimientosList(proyecto.getSeguimientoList());
+        //setSeguimientosList(proyecto.getSeguimientoList());
         this.proCorreoLtecnico = proyecto.getProCorreoLtecnico();
         this.proCorreoPatrocinador = proyecto.getProCorreoPatrocinador();
         setActividadList(proyecto.getActividadList());
