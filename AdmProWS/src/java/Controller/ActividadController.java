@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Controller;
+package controller;
 
 import java.util.List;
 import javax.ejb.EJB;
@@ -15,12 +15,11 @@ import service.ActividadService;
 
 /**
  *
- * @author Pablo-VE
+ * @author Susana
  */
 @WebService(serviceName = "ActividadController")
 public class ActividadController {
-
-    @EJB 
+@EJB 
     ActividadService actividadService;
     
     @WebMethod(operationName = "guardarActividad")
@@ -29,13 +28,12 @@ public class ActividadController {
     }
     
     @WebMethod(operationName = "getActividades")
-    public List<ActividadDto> getActividades(@WebParam(name = "proId") Long proId) {
-        return actividadService.getActividades(proId);
+    public List<ActividadDto> getActividades(@WebParam(name = "proId1") Long proId1) {
+        return actividadService.getActividades(proId1);
     }
     
     @WebMethod(operationName = "eliminarAct")
     public String eliminarAct(@WebParam(name = "actId") Long id){
         return actividadService.eliminarAct(id);
     }
-    
 }
