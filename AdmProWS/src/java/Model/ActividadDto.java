@@ -152,6 +152,12 @@ public class ActividadDto {
     public void setVersion(Long version) {
         this.version = version;
     }
+
+    public ProyectosDto getPro() {
+        return pro;
+    }
+    
+    
     
 }
     

@@ -34,7 +34,7 @@ public class SeguimientoService {
     public SeguimientoDto guardarSeguimiento(SeguimientoDto segDto) {
         try {
             Seguimiento seg;
-            Proyecto pro = em.find(Proyecto.class, new Long(1));//segDto.getProyecto().getProId());
+            Proyecto pro = em.find(Proyecto.class, segDto.getProyecto().getProId());//;
             if (segDto.getId()!= null && segDto.getId()> 0) {
                 seg = em.find(Seguimiento.class, segDto.getId());
                 if (seg == null) { 

@@ -44,7 +44,8 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Proyecto.findByProEstado", query = "SELECT p FROM Proyecto p WHERE p.proEstado = :proEstado")
     , @NamedQuery(name = "Proyecto.findByProVersion", query = "SELECT p FROM Proyecto p WHERE p.proVersion = :proVersion")
     , @NamedQuery(name = "Proyecto.findByProNombre", query = "SELECT p FROM Proyecto p WHERE p.proNombre = :proNombre")
-    , @NamedQuery(name = "Proyecto.filtro", query = "SELECT p FROM Proyecto p WHERE p.admId = :admId or UPPER(p.proNombre) LIKE :proNombre")})
+    , @NamedQuery(name = "Proyecto.filtro", query = "SELECT p FROM Proyecto p WHERE p.admId = :admId or UPPER(p.proNombre) LIKE :proNombre")
+    , @NamedQuery(name = "Proyecto.filtro2", query = "SELECT p FROM Proyecto p WHERE UPPER(p.proNombre) LIKE :proNombre and UPPER(p.proLtecnico) LIKE :proLtecnico and UPPER(p.proPatrocinador) LIKE :proPatrocinador")})
 public class Proyecto implements Serializable {
 
     
@@ -125,8 +126,10 @@ public class Proyecto implements Serializable {
         this.proEstado = pro.getProEstado();
         this.proNombre = pro.getProNombre();
         this.admId = new Administrador(pro.getAdmId());
-        this.actividadList = pro.getListAct();
-        this.seguimientoList = pro.getListSeg();
+//        if(pro.getListAct() != null)
+//            this.actividadList = pro.getListAct();
+//        if(pro.getListSeg() != null)
+//            this.seguimientoList = pro.getListSeg();
     }
     
     public Long getProId() {

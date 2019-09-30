@@ -19,7 +19,8 @@ import service.ActividadService;
  */
 @WebService(serviceName = "ActividadController")
 public class ActividadController {
-@EJB 
+    
+    @EJB 
     ActividadService actividadService;
     
     @WebMethod(operationName = "guardarActividad")

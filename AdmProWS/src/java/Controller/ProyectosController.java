@@ -50,4 +50,9 @@ public class ProyectosController {
     public List<ProyectosDto> filter(@WebParam(name = "Administrador") AdministradorDto adm, @WebParam(name = "nombre") String nombre){
         return service.filtro(adm, nombre);
     }
+    
+    @WebMethod(operationName = "filter2")
+    public List<ProyectosDto> filter2(@WebParam(name = "proNombre") String proNobre, @WebParam(name = "proLtecnico") String proLtecnico, @WebParam(name = "proPatrocinador") String proPatrocinador){
+        return service.filtro2(proNobre, proLtecnico, proPatrocinador);
+    }
 }

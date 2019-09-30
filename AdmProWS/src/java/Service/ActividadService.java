@@ -5,6 +5,7 @@
  */
 package service;
 
+import com.sun.xml.ws.security.opt.impl.util.SOAPUtil;
 import java.sql.SQLIntegrityConstraintViolationException;
 import java.util.ArrayList;
 import java.util.List;
@@ -35,7 +36,7 @@ public class ActividadService {
     public ActividadDto guardarActividad(ActividadDto actDto) {
         try {
             Actividad act;
-            Proyecto pro = em.find(Proyecto.class, new Long(1));//segDto.getProyecto().getProId());
+            Proyecto pro = em.find(Proyecto.class, actDto.getPro().getProId());//actDto.getProyecto().getProId());
             if (actDto.getId()!= null && actDto.getId()> 0) {
                 act = em.find(Actividad.class, actDto.getId());
                 if (act == null) { 

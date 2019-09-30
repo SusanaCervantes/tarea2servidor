@@ -50,7 +50,7 @@ public class ProyectosService {
     public ProyectosDto guardarProyecto(ProyectosDto proDto) {
         try {
             Proyecto pro;
-            if (proDto.getProId()!= null && proDto.getProId() > 0) {
+            if (proDto.getProId() > 0) {
                 pro = em.find(Proyecto.class, proDto.getProId());
                 if (pro == null) {
                     return null;
@@ -66,7 +66,7 @@ public class ProyectosService {
             proDto = new ProyectosDto(pro);
             return proDto;
         } catch (Exception ex) {
-            LOG.log(Level.SEVERE, "Ocurrio un error al guardar el administrador.", ex);
+            LOG.log(Level.SEVERE, "Ocurrio un error al guardar el proyecto.", ex);
             return null;
         }
     }
@@ -112,4 +112,32 @@ public class ProyectosService {
             return null;
         }
     }
+    
+    /**
+     * 
+     * @param nom nombre del proyecto
+     * @param lt lider tecnico
+     * @param p patrocinador
+     * @return 
+     */
+     public List<ProyectosDto> filtro2(String nom, String lt, String p){
+        try{
+            Query query = em.createNamedQuery("Proyecto.filtro2", Proyecto.class);
+            query.setParameter("proNombre", nom);
+            query.setParameter("proLtecnico", lt);
+            query.setParameter("proPatrocinador", p);
+            List<Proyecto> list = query.getResultList();
+            List<ProyectosDto> retorno = new ArrayList();
+            for(Proyecto pro : list){
+                retorno.add(new ProyectosDto(pro));
+            }
+            return retorno;
+        }catch(NoResultException ex){
+            return null;
+        }catch(Exception ex){
+            return null;
+        }
+    }
+    
+    
 }

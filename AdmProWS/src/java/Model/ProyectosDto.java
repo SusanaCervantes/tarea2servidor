@@ -86,7 +86,7 @@ public class ProyectosDto {
         //setSeguimientosList(proyecto.getSeguimientoList());
         this.proCorreoLtecnico = proyecto.getProCorreoLtecnico();
         this.proCorreoPatrocinador = proyecto.getProCorreoPatrocinador();
-        setActividadList(proyecto.getActividadList());
+//        setActividadList(proyecto.getActividadList());
     }
 
     public Long getProId() {
